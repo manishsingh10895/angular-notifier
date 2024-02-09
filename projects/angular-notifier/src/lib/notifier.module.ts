@@ -19,7 +19,7 @@ import { NotifierQueueService } from './services/notifier-queue.service';
  * @returns - Notifier configuration as result
  */
 export function notifierCustomConfigFactory(options: NotifierOptions): NotifierConfig {
-  return new NotifierConfig(options);
+    return new NotifierConfig(options);
 }
 
 /**
@@ -31,52 +31,52 @@ export function notifierCustomConfigFactory(options: NotifierOptions): NotifierC
  * @returns - Notifier configuration as result
  */
 export function notifierDefaultConfigFactory(): NotifierConfig {
-  return new NotifierConfig({});
+    return new NotifierConfig({});
 }
 
 /**
  * Notifier module
  */
 @NgModule({
-  declarations: [NotifierContainerComponent, NotifierNotificationComponent],
-  exports: [NotifierContainerComponent],
-  imports: [CommonModule],
-  providers: [
-    NotifierAnimationService,
-    NotifierService,
-    NotifierQueueService,
+    declarations: [NotifierContainerComponent, NotifierNotificationComponent],
+    exports: [NotifierContainerComponent],
+    imports: [CommonModule],
+    providers: [
+        NotifierAnimationService,
+        NotifierService,
+        NotifierQueueService,
 
-    // Provide the default notifier configuration if just the module is imported
-    {
-      provide: NotifierConfigToken,
-      useFactory: notifierDefaultConfigFactory,
-    },
-  ],
+        // Provide the default notifier configuration if just the module is imported
+        {
+            provide: NotifierConfigToken,
+            useFactory: notifierDefaultConfigFactory,
+        },
+    ],
 })
 export class NotifierModule {
-  /**
-   * Setup the notifier module with custom providers, in this case with a custom configuration based on the givne options
-   *
-   * @param   [options={}] - Custom notifier options
-   * @returns - Notifier module with custom providers
-   */
-  public static withConfig(options: NotifierOptions = {}): ModuleWithProviders<NotifierModule> {
-    return {
-      ngModule: NotifierModule,
-      providers: [
-        // Provide the options itself upfront (as we need to inject them as dependencies -- see below)
-        {
-          provide: NotifierOptionsToken,
-          useValue: options,
-        },
+    /**
+     * Setup the notifier module with custom providers, in this case with a custom configuration based on the givne options
+     *
+     * @param   [options={}] - Custom notifier options
+     * @returns - Notifier module with custom providers
+     */
+    public static withConfig(options: NotifierOptions = {}): ModuleWithProviders<NotifierModule> {
+        return {
+            ngModule: NotifierModule,
+            providers: [
+                // Provide the options itself upfront (as we need to inject them as dependencies -- see below)
+                {
+                    provide: NotifierOptionsToken,
+                    useValue: options,
+                },
 
-        // Provide a custom notifier configuration, based on the given notifier options
-        {
-          deps: [NotifierOptionsToken],
-          provide: NotifierConfigToken,
-          useFactory: notifierCustomConfigFactory,
-        },
-      ],
-    };
-  }
+                // Provide a custom notifier configuration, based on the given notifier options
+                {
+                    deps: [NotifierOptionsToken],
+                    provide: NotifierConfigToken,
+                    useFactory: notifierCustomConfigFactory,
+                },
+            ],
+        };
+    }
 }
