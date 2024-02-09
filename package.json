@@ -31,6 +31,7 @@
     "lint:library": "eslint projects/angular-notifier/src/**/*.ts --max-warnings 0",
     "lint:library:fix": "eslint projects/angular-notifier/src/**/*.ts --max-warnings 0 --fix",
     "start": "ng serve angular-notifier-demo",
+    "prepare": "npm run build:library",
     "test:library": "ng test angular-notifier",
     "test:library:upload-coverage": "codecov -f coverage/coverage-final.json"
   },
