@@ -1,11 +1,11 @@
 {
-  "name": "angular-notifier",
-  "description": "A well designed, fully animated, highly customizable, and easy-to-use notification library for your Angular application.",
+  "name": "angular-notifier-mash",
+  "description": "(Forked) A well designed, fully animated, highly customizable, and easy-to-use notification library for your Angular application.",
   "version": "14.1.0",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dominique-mueller/angular-notifier"
+    "url": "https://github.com/manishsingh10895/angular-notifier"
   },
   "keywords": [
     "angular",
